@@ -1,0 +1,34 @@
+# .golangci-lint.yaml
+# https://golangci-lint.run/usage/configuration/
+
+linters:
+  enable-all: true
+  disable:
+    ## --- deprecated
+    - exhaustivestruct
+    - golint
+    - interfacer
+    - maligned
+    - scopelint
+    ## --- 使わない
+    - gci # import文同士の隙間をTab+改行にしろと言われる(bug?)
+    - godot # 日本語で書くからドットはあまり使わない
+    - exhaustruct # struct を必ず値指定して生成する必要性は無い
+    - nlreturn # wsl あるから不要
+    - lll # 行が長くてもOK
+    - varnamelen # 目的はよいのだが基準がよくわからない、行数の多い関数だとチェックされてしまう
+
+linters-settings:
+  maintidx:
+    under: 15
+
+issues:
+  exclude-rules:
+    # test は重複コードと関数のサイズが大きくなることを許容
+    - path: _test.go
+      linters:
+        - dupl
+        - funlen
+        - paralleltest
+        - goconst
+        - goerr113
