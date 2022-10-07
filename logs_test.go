@@ -1,4 +1,4 @@
-package rtlog_test
+package logs_test
 
 import (
 	"bytes"
@@ -9,7 +9,7 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/rs/zerolog"
-	"github.com/rtkym/logs-go"
+	logs "github.com/rtkym/logs-go"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -72,84 +72,84 @@ func TestGlobalLogger(t *testing.T) {
 		level := TraceLevel
 
 		buf := &bytes.Buffer{}
-		rtlog.GlobalLoggerOptions = []rtlog.OptionFunc{rtlog.OptionLevel(level.String()), func(opt *rtlog.Option) { opt.Writer = buf }}
-		rtlog.InitGlobalLogger()
+		logs.GlobalLoggerOptions = []logs.OptionFunc{logs.OptionLevel(level.String()), func(opt *logs.Option) { opt.Writer = buf }}
+		logs.InitGlobalLogger()
 
-		testExec(t, rtlog.Trace, TraceLevel, level, buf)
-		testExec(t, rtlog.Debug, DebugLevel, level, buf)
-		testExec(t, rtlog.Info, InfoLevel, level, buf)
-		testExec(t, rtlog.Warn, WarnLevel, level, buf)
-		testExec(t, rtlog.Error, ErrorLevel, level, buf)
+		testExec(t, logs.Trace, TraceLevel, level, buf)
+		testExec(t, logs.Debug, DebugLevel, level, buf)
+		testExec(t, logs.Info, InfoLevel, level, buf)
+		testExec(t, logs.Warn, WarnLevel, level, buf)
+		testExec(t, logs.Error, ErrorLevel, level, buf)
 	})
 
 	t.Run("debug", func(t *testing.T) {
 		level := DebugLevel
 
 		buf := &bytes.Buffer{}
-		rtlog.GlobalLoggerOptions = []rtlog.OptionFunc{rtlog.OptionLevel(level.String()), func(opt *rtlog.Option) { opt.Writer = buf }}
-		rtlog.InitGlobalLogger()
+		logs.GlobalLoggerOptions = []logs.OptionFunc{logs.OptionLevel(level.String()), func(opt *logs.Option) { opt.Writer = buf }}
+		logs.InitGlobalLogger()
 
-		testExec(t, rtlog.Trace, TraceLevel, level, buf)
-		testExec(t, rtlog.Debug, DebugLevel, level, buf)
-		testExec(t, rtlog.Info, InfoLevel, level, buf)
-		testExec(t, rtlog.Warn, WarnLevel, level, buf)
-		testExec(t, rtlog.Error, ErrorLevel, level, buf)
+		testExec(t, logs.Trace, TraceLevel, level, buf)
+		testExec(t, logs.Debug, DebugLevel, level, buf)
+		testExec(t, logs.Info, InfoLevel, level, buf)
+		testExec(t, logs.Warn, WarnLevel, level, buf)
+		testExec(t, logs.Error, ErrorLevel, level, buf)
 	})
 
 	t.Run("info", func(t *testing.T) {
 		level := InfoLevel
 
 		buf := &bytes.Buffer{}
-		rtlog.GlobalLoggerOptions = []rtlog.OptionFunc{rtlog.OptionLevel(level.String()), func(opt *rtlog.Option) { opt.Writer = buf }}
-		rtlog.InitGlobalLogger()
+		logs.GlobalLoggerOptions = []logs.OptionFunc{logs.OptionLevel(level.String()), func(opt *logs.Option) { opt.Writer = buf }}
+		logs.InitGlobalLogger()
 
-		testExec(t, rtlog.Trace, TraceLevel, level, buf)
-		testExec(t, rtlog.Debug, DebugLevel, level, buf)
-		testExec(t, rtlog.Info, InfoLevel, level, buf)
-		testExec(t, rtlog.Warn, WarnLevel, level, buf)
-		testExec(t, rtlog.Error, ErrorLevel, level, buf)
+		testExec(t, logs.Trace, TraceLevel, level, buf)
+		testExec(t, logs.Debug, DebugLevel, level, buf)
+		testExec(t, logs.Info, InfoLevel, level, buf)
+		testExec(t, logs.Warn, WarnLevel, level, buf)
+		testExec(t, logs.Error, ErrorLevel, level, buf)
 	})
 
 	t.Run("warn", func(t *testing.T) {
 		level := WarnLevel
 
 		buf := &bytes.Buffer{}
-		rtlog.GlobalLoggerOptions = []rtlog.OptionFunc{rtlog.OptionLevel(level.String()), func(opt *rtlog.Option) { opt.Writer = buf }}
-		rtlog.InitGlobalLogger()
+		logs.GlobalLoggerOptions = []logs.OptionFunc{logs.OptionLevel(level.String()), func(opt *logs.Option) { opt.Writer = buf }}
+		logs.InitGlobalLogger()
 
-		testExec(t, rtlog.Trace, TraceLevel, level, buf)
-		testExec(t, rtlog.Debug, DebugLevel, level, buf)
-		testExec(t, rtlog.Info, InfoLevel, level, buf)
-		testExec(t, rtlog.Warn, WarnLevel, level, buf)
-		testExec(t, rtlog.Error, ErrorLevel, level, buf)
+		testExec(t, logs.Trace, TraceLevel, level, buf)
+		testExec(t, logs.Debug, DebugLevel, level, buf)
+		testExec(t, logs.Info, InfoLevel, level, buf)
+		testExec(t, logs.Warn, WarnLevel, level, buf)
+		testExec(t, logs.Error, ErrorLevel, level, buf)
 	})
 
 	t.Run("error", func(t *testing.T) {
 		level := ErrorLevel
 
 		buf := &bytes.Buffer{}
-		rtlog.GlobalLoggerOptions = []rtlog.OptionFunc{rtlog.OptionLevel(level.String()), func(opt *rtlog.Option) { opt.Writer = buf }}
-		rtlog.InitGlobalLogger()
+		logs.GlobalLoggerOptions = []logs.OptionFunc{logs.OptionLevel(level.String()), func(opt *logs.Option) { opt.Writer = buf }}
+		logs.InitGlobalLogger()
 
-		testExec(t, rtlog.Trace, TraceLevel, level, buf)
-		testExec(t, rtlog.Debug, DebugLevel, level, buf)
-		testExec(t, rtlog.Info, InfoLevel, level, buf)
-		testExec(t, rtlog.Warn, WarnLevel, level, buf)
-		testExec(t, rtlog.Error, ErrorLevel, level, buf)
+		testExec(t, logs.Trace, TraceLevel, level, buf)
+		testExec(t, logs.Debug, DebugLevel, level, buf)
+		testExec(t, logs.Info, InfoLevel, level, buf)
+		testExec(t, logs.Warn, WarnLevel, level, buf)
+		testExec(t, logs.Error, ErrorLevel, level, buf)
 	})
 
 	t.Run("set,with", func(t *testing.T) {
 		level := InfoLevel
 
 		buf := &bytes.Buffer{}
-		rtlog.GlobalLoggerOptions = []rtlog.OptionFunc{rtlog.OptionLevel(level.String()), func(opt *rtlog.Option) { opt.Writer = buf }}
-		rtlog.InitGlobalLogger()
+		logs.GlobalLoggerOptions = []logs.OptionFunc{logs.OptionLevel(level.String()), func(opt *logs.Option) { opt.Writer = buf }}
+		logs.InitGlobalLogger()
 
-		rtlog.Set("set1", "a")
-		rtlog.Set("set2", "b")
+		logs.Set("set1", "a")
+		logs.Set("set2", "b")
 
 		buf.Reset()
-		rtlog.Entry().V("with1", "1").V("with2", "2").Info("test msg1")
+		logs.Entry().V("with1", "1").V("with2", "2").Info("test msg1")
 
 		assert.Contains(t, buf.String(), `"set1":"a"`)
 		assert.Contains(t, buf.String(), `"set2":"b"`)
@@ -158,7 +158,7 @@ func TestGlobalLogger(t *testing.T) {
 		assert.Contains(t, buf.String(), `"test msg1"`)
 
 		buf.Reset()
-		rtlog.V("with1", "X").V("with2", "Y").Info("test msg2")
+		logs.V("with1", "X").V("with2", "Y").Info("test msg2")
 
 		assert.Contains(t, buf.String(), `"set1":"a"`)
 		assert.Contains(t, buf.String(), `"set2":"b"`)
@@ -167,7 +167,7 @@ func TestGlobalLogger(t *testing.T) {
 		assert.Contains(t, buf.String(), `"test msg2"`)
 
 		buf.Reset()
-		rtlog.E(errors.New("test error")).Info("test msg3")
+		logs.E(errors.New("test error")).Info("test msg3")
 
 		assert.Contains(t, buf.String(), `"set1":"a"`)
 		assert.Contains(t, buf.String(), `"set2":"b"`)
@@ -181,7 +181,7 @@ func TestLogger(t *testing.T) {
 		level := TraceLevel
 
 		buf := &bytes.Buffer{}
-		logger := rtlog.NewWithOption(rtlog.OptionLevel(level.String()), func(opt *rtlog.Option) { opt.Writer = buf })
+		logger := logs.NewWithOption(logs.OptionLevel(level.String()), func(opt *logs.Option) { opt.Writer = buf })
 
 		testExec(t, logger.Trace, TraceLevel, level, buf)
 		testExec(t, logger.Debug, DebugLevel, level, buf)
@@ -194,7 +194,7 @@ func TestLogger(t *testing.T) {
 		level := DebugLevel
 
 		buf := &bytes.Buffer{}
-		logger := rtlog.NewWithOption(rtlog.OptionLevel(level.String()), func(opt *rtlog.Option) { opt.Writer = buf })
+		logger := logs.NewWithOption(logs.OptionLevel(level.String()), func(opt *logs.Option) { opt.Writer = buf })
 
 		testExec(t, logger.Trace, TraceLevel, level, buf)
 		testExec(t, logger.Debug, DebugLevel, level, buf)
@@ -207,7 +207,7 @@ func TestLogger(t *testing.T) {
 		level := InfoLevel
 
 		buf := &bytes.Buffer{}
-		logger := rtlog.NewWithOption(rtlog.OptionLevel(level.String()), func(opt *rtlog.Option) { opt.Writer = buf })
+		logger := logs.NewWithOption(logs.OptionLevel(level.String()), func(opt *logs.Option) { opt.Writer = buf })
 
 		testExec(t, logger.Trace, TraceLevel, level, buf)
 		testExec(t, logger.Debug, DebugLevel, level, buf)
@@ -220,7 +220,7 @@ func TestLogger(t *testing.T) {
 		level := WarnLevel
 
 		buf := &bytes.Buffer{}
-		logger := rtlog.NewWithOption(rtlog.OptionLevel(level.String()), func(opt *rtlog.Option) { opt.Writer = buf })
+		logger := logs.NewWithOption(logs.OptionLevel(level.String()), func(opt *logs.Option) { opt.Writer = buf })
 
 		testExec(t, logger.Trace, TraceLevel, level, buf)
 		testExec(t, logger.Debug, DebugLevel, level, buf)
@@ -233,7 +233,7 @@ func TestLogger(t *testing.T) {
 		level := ErrorLevel
 
 		buf := &bytes.Buffer{}
-		logger := rtlog.NewWithOption(rtlog.OptionLevel(level.String()), func(opt *rtlog.Option) { opt.Writer = buf })
+		logger := logs.NewWithOption(logs.OptionLevel(level.String()), func(opt *logs.Option) { opt.Writer = buf })
 
 		testExec(t, logger.Trace, TraceLevel, level, buf)
 		testExec(t, logger.Debug, DebugLevel, level, buf)
@@ -246,7 +246,7 @@ func TestLogger(t *testing.T) {
 		level := InfoLevel
 
 		buf := &bytes.Buffer{}
-		logger := rtlog.NewWithOption(rtlog.OptionLevel(level.String()), func(opt *rtlog.Option) { opt.Writer = buf })
+		logger := logs.NewWithOption(logs.OptionLevel(level.String()), func(opt *logs.Option) { opt.Writer = buf })
 
 		logger.Set("set1", "a")
 		logger.Set("set2", "b")
@@ -282,7 +282,7 @@ func TestLogger(t *testing.T) {
 		level := InfoLevel
 
 		buf := &bytes.Buffer{}
-		logger := rtlog.NewWithOption(rtlog.OptionLevel(level.String()), func(opt *rtlog.Option) { opt.Writer = buf })
+		logger := logs.NewWithOption(logs.OptionLevel(level.String()), func(opt *logs.Option) { opt.Writer = buf })
 
 		buf.Reset()
 		logger.E(&MarshalableError{}).Info("test msg1")
@@ -323,8 +323,8 @@ func (err *ValuesError3) Values() []string {
 func TestConsoleLogger(t *testing.T) {
 	var cWriter *zerolog.ConsoleWriter
 
-	logger := rtlog.NewWithOption(func(opt *rtlog.Option) {
-		rtlog.OptionConsoleWriter()(opt)
+	logger := logs.NewWithOption(func(opt *logs.Option) {
+		logs.OptionConsoleWriter()(opt)
 
 		if writer, ok := opt.Writer.(*zerolog.ConsoleWriter); ok {
 			cWriter = writer
@@ -355,17 +355,17 @@ func TestConsoleLogger(t *testing.T) {
 }
 
 func TestNewConsole(t *testing.T) {
-	defer rtlog.ExpSetLogFormat("console")()
+	defer logs.ExpSetLogFormat("console")()
 
-	logger := rtlog.New()
+	logger := logs.New()
 
 	assert.NotNil(t, logger)
 }
 
 func TestNewJSON(t *testing.T) {
-	defer rtlog.ExpSetLogFormat("json")()
+	defer logs.ExpSetLogFormat("json")()
 
-	logger := rtlog.New()
+	logger := logs.New()
 
 	assert.NotNil(t, logger)
 }

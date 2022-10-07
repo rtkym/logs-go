@@ -5,7 +5,7 @@ import (
 	"context"
 	"testing"
 
-	rtlog "github.com/rtkym/logs-go"
+	"github.com/rtkym/logs-go"
 	"github.com/rtkym/logs-go/optctx"
 	"github.com/stretchr/testify/assert"
 )
@@ -33,7 +33,7 @@ func TestFromContext(t *testing.T) {
 	t.Run("LogContextあり、Optionsあり", func(t *testing.T) {
 		ctx := context.Background()
 		buf := &bytes.Buffer{}
-		ctx = optctx.NewContext(ctx, &optctx.OptCtx{LoggerOptions: []rtlog.OptionFunc{func(opt *rtlog.Option) { opt.Writer = buf }}})
+		ctx = optctx.NewContext(ctx, &optctx.OptCtx{LoggerOptions: []logs.OptionFunc{func(opt *logs.Option) { opt.Writer = buf }}})
 
 		logger := optctx.NewLogger(ctx)
 		logger.Info("test")

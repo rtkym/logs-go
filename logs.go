@@ -1,4 +1,4 @@
-package rtlog
+package logs
 
 import (
 	"io"

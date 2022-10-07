@@ -1,10 +1,10 @@
-package rtlog
+package logs
 
 import "github.com/rs/zerolog"
 
 const DefaultDatetimeFormat = "2006-01-02T15:04:05.000000000Z07:00"
 
-// init initializes the rtlog package
+// init initializes the logs package
 func init() { //nolint:gochecknoinits
 	zerolog.TimeFieldFormat = DefaultDatetimeFormat
 
